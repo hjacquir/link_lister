@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * Created by Hatim Jacquir
+ * @author : Hatim Jacquir <jacquirhatim@gmail.com>
+ */
+
+/**
+ * @file A module to list all link for youy drupal site
+ */
+
+function link_lister_list()
+{
+    $query = db_select('menu_links', 'ml')
+        ->fields('ml', array('router_path'))
+        ->orderBy('router_path');
+
+    $paths = $query->execute();
+
+    while ($path = $paths->fetchAssoc()) {
+        echo $path['router_path'] . PHP_EOL;
+    }
+}
